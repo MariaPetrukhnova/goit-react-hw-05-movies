@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { Link, useSearchParams, useLocation } from "react-router-dom";
 import apiHandler from "services/Api";
 
@@ -26,13 +26,12 @@ const Movies = () => {
         }
     };
 
-    const firstUpdate = useRef(true);
     useEffect(() => {
         const query = searchParams.get('query');
-        console.log('AAAAAAAAAAAAAAAA')
-        if (firstUpdate.current) {
-            firstUpdate.current = false
-        } else if (query) {
+
+        if (query) {
+            setSearchName(query);
+
             apiHandler(`${SEARCH_ENDPOINT}${query}&`)
                 .then(res => {
                     setSearchArr([...res.results]);
