@@ -5,8 +5,6 @@ import apiHandler from "services/Api";
 const SEARCH_ENDPOINT = 'search/movie?query=';
 
 const Movies = () => {
-    // const [error, setError] = useState(null);
-    // const [loading, setLoading] = useState(null);
     const [searchName, setSearchName] = useState('');
     const [searchArr, setSearchArr] = useState([]);
     const [searchParams, setSearchParams] = useSearchParams();
@@ -31,17 +29,15 @@ const Movies = () => {
     const firstUpdate = useRef(true);
     useEffect(() => {
         const query = searchParams.get('query');
+        console.log('AAAAAAAAAAAAAAAA')
         if (firstUpdate.current) {
             firstUpdate.current = false
         } else if (query) {
-            // setError(null);
-            // setLoading(true);
             apiHandler(`${SEARCH_ENDPOINT}${query}&`)
                 .then(res => {
                     setSearchArr([...res.results]);
                 })
-                .catch(error => new Error(`Something goes wrong: ${error}`))
-                // .finally(() => setLoading(false));
+                .catch(error => new Error(`Something goes wrong: ${error}`));
         }
     }, [searchParams]);
 

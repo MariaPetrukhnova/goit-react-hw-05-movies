@@ -7,8 +7,6 @@ const IMG_URL = 'https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces/';
 
 const MovieDetails = () => {
     const { movieId } = useParams();
-    // const [error, setError] = useState(null);
-    // const [loading, setLoading] = useState(null);
     const [movieDet, setMovieDet] = useState({});
     const location = useLocation();
     const backLink = useRef(location.state?.from ?? '/');
@@ -25,7 +23,6 @@ const MovieDetails = () => {
             setMovieDet({ ...movDetails });
             })
         .catch(error => new Error(`Something goes wrong: ${error}`))
-        // .finally(() => setLoading(false));
     }, [movieId]);
     
     return (
